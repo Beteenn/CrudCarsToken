@@ -6,5 +6,6 @@
         string GerarTokenEscrita();
         bool ValidarTokenLeitura(string token);
         bool ValidarTokenEscrita(string token);
+        bool ValidarAutenticidadeToken(string dados);
     }
 }

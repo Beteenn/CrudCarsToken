@@ -21,27 +21,13 @@ namespace CrudCarsTokens.Services
             return new TokenViewModel { Token = token };
         }
 
-        public TokenValidoViewModel ValidarTokenEscrita(string token)
-        {
-            var tokenValido = _tokenService.ValidarTokenEscrita(token);
-
-            return new TokenValidoViewModel { Valido = tokenValido };
-        }
-
         public TokenViewModel CriarTokenLeitura()
         {
             var token = _tokenService.GerarTokenLeitura();
 
             return new TokenViewModel { Token = token };
         }
-
-        public TokenValidoViewModel ValidarTokenLeitura(string token)
-        {
-            var tokenValido = _tokenService.ValidarTokenLeitura(token);
-
-            return new TokenValidoViewModel { Valido = tokenValido };
-        }
-
+        
         public LoginViewModel Login(LoginDto loginDto)
         {
             var tokenLeitura = _tokenService.GerarTokenLeitura();
@@ -49,6 +35,20 @@ namespace CrudCarsTokens.Services
             var tokenEscrita = _tokenService.GerarTokenEscrita();
 
             return new LoginViewModel { TokenEscrita = tokenEscrita, TokenLeitura = tokenLeitura };
+        }
+        
+        private TokenValidoViewModel ValidarTokenEscrita(string token)
+        {
+            var tokenValido = _tokenService.ValidarTokenEscrita(token);
+
+            return new TokenValidoViewModel { Valido = tokenValido };
+        }
+
+        private TokenValidoViewModel ValidarTokenLeitura(string token)
+        {
+            var tokenValido = _tokenService.ValidarTokenLeitura(token);
+
+            return new TokenValidoViewModel { Valido = tokenValido };
         }
     }
 }
