@@ -1,13 +1,23 @@
+using CrudCarsTokens.Cryptography;
+using CrudCarsTokens.Filters;
 using CrudCarsTokens.Services;
 using CrudCarsTokens.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers(config =>
+{
+    config.Filters.Add(new TokensFilter(new TokenService(new Cryptography())));
+});
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICarrosService, CarrosService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+builder.Services.AddSingleton<ICryptography, Cryptography>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
