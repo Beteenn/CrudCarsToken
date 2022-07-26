@@ -14,11 +14,24 @@ namespace CrudCarsTokens.Controllers
             _carrosService = carrosService;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObterCarroPorId(int id)
+        {
+            var carro = await _carrosService.ObterCarroPorId(id);
+
+            if (carro == null) return NotFound();
+
+            return Ok(carro);
+        }
 
         [HttpGet()]
-        public IActionResult ListarCarros()
+        public async Task<IActionResult> ListarCarros()
         {
-            return Ok("Listando Carros");
+            var carro = await _carrosService.ListarCarros();
+
+            if (carro == null) return NotFound();
+
+            return Ok(carro);
         }
 
         [HttpPost()]

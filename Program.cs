@@ -1,5 +1,7 @@
 using CrudCarsTokens.Cryptography;
 using CrudCarsTokens.Filters;
+using CrudCarsTokens.Repositories;
+using CrudCarsTokens.Repositories.Interfaces;
 using CrudCarsTokens.Services;
 using CrudCarsTokens.Services.Interfaces;
 
@@ -16,6 +18,8 @@ builder.Services.AddControllers(config =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarrosService, CarrosService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+
+builder.Services.AddTransient<IDapperContext, DapperContext>();
 
 builder.Services.AddSingleton<ICryptography, Cryptography>();
 
