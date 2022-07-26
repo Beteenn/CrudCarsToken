@@ -22,6 +22,7 @@ builder.Services.AddSingleton(mapperConfig.Mapper);
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarrosService, CarrosService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 builder.Services.AddTransient<IDapperContext, DapperContext>();
 

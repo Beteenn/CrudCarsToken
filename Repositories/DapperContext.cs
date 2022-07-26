@@ -58,5 +58,20 @@ namespace CrudCarsTokens.Repositories
 
             await DbConnection.ExecuteAsync(sql);
         }
+
+        public async Task<Usuario> ObterUsuarioPorNome(string nomeUsuario)
+        {
+            var sql = $"Select * from Usuario WHERE Nome = '{nomeUsuario}'";
+            var usuario = await DbConnection.QueryAsync<Usuario>(sql);
+
+            return usuario.FirstOrDefault();
+        }
+
+        public async Task AdicionarUsuario(Usuario novoUsuario)
+        {
+            var sql = $"INSERT INTO Usuario (Nome, Email, HashSenha) VALUES ('{novoUsuario.Nome}', '{novoUsuario.Email}', '{novoUsuario.HashSenha}')";
+
+            await DbConnection.ExecuteAsync(sql);
+        }
     }
 }

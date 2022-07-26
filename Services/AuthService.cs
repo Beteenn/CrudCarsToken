@@ -8,10 +8,12 @@ namespace CrudCarsTokens.Services
     public class AuthService : IAuthService
     {
         private readonly ITokenService _tokenService;
+        private readonly IUsuarioService _usuarioService;
 
-        public AuthService(ITokenService tokenService)
+        public AuthService(ITokenService tokenService, IUsuarioService usuarioService)
         {
             _tokenService = tokenService;
+            _usuarioService = usuarioService;
         }
 
         public TokenViewModel CriarTokenEscrita()
@@ -28,8 +30,12 @@ namespace CrudCarsTokens.Services
             return new TokenViewModel { Token = token };
         }
         
-        public LoginViewModel Login(LoginDto loginDto)
+        public async Task<LoginViewModel> Login(LoginDto loginDto)
         {
+            var usuarioValido = await _usuarioService.Login(loginDto.NomeUsuario, loginDto.Senha);
+
+            if (!usuarioValido) return null;
+
             var tokenLeitura = _tokenService.GerarTokenLeitura();
 
             var tokenEscrita = _tokenService.GerarTokenEscrita();

@@ -9,5 +9,7 @@ namespace CrudCarsTokens.Repositories.Interfaces
         Task AdicionarCarro(Carro novoCarro);
         Task AtualizarCarro(Carro carroAtualizado);
         Task DeleteCarro(int id);
+        Task<Usuario> ObterUsuarioPorNome(string nomeUsuario);
+        Task AdicionarUsuario(Usuario novoUsuario);
     }
 }

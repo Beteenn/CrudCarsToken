@@ -88,5 +88,15 @@ namespace CrudCarsTokens.Cryptography
 
             return true;
         }
+
+        public string GerarHashSenha(string senha)
+        {
+            return _cripto.Encrypt(senha);
+        }
+
+        public string DecriptarHashSenha(string hash)
+        {
+            return _cripto.Decrypt(hash);
+        }
     }
 }

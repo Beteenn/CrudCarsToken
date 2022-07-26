@@ -7,6 +7,6 @@ namespace CrudCarsTokens.Services.Interfaces
     {
         TokenViewModel CriarTokenEscrita();
         TokenViewModel CriarTokenLeitura();
-        LoginViewModel Login(LoginDto loginDto);
+        Task<LoginViewModel> Login(LoginDto loginDto);
     }
 }

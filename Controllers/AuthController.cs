@@ -16,11 +16,11 @@ namespace CrudCarsTokens.Controllers
         }
 
         [HttpPost("Login")]
-        public IActionResult Login(LoginDto loginDto)
+        public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            var resultado = _authService.Login(loginDto);
+            var resultado = await _authService.Login(loginDto);
 
-            if (resultado == null) return BadRequest("Erro ao gerar token.");
+            if (resultado == null) return BadRequest("Erro ao fazer login.");
 
             return Ok(resultado);
         }
