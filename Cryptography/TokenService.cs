@@ -82,7 +82,7 @@ namespace CrudCarsTokens.Cryptography
             if (chave != _chave) return false;
 
             if (!Enum.TryParse(tipoToken, out TipoTokenEnum resultado) ||
-                resultado != TipoTokenEnum.Leitura ||
+                resultado != TipoTokenEnum.Leitura &&
                 resultado != TipoTokenEnum.Escrita)
                 return false;
 
