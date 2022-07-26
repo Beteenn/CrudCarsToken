@@ -1,3 +1,4 @@
+using CrudCarsTokens.AutoMapper;
 using CrudCarsTokens.Cryptography;
 using CrudCarsTokens.Filters;
 using CrudCarsTokens.Repositories;
@@ -14,6 +15,9 @@ builder.Services.AddControllers(config =>
 });
 
 //builder.Services.AddControllers();
+
+var mapperConfig = new AutoMapperConfig();
+builder.Services.AddSingleton(mapperConfig.Mapper);
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarrosService, CarrosService>();

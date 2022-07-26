@@ -37,5 +37,26 @@ namespace CrudCarsTokens.Repositories
 
             return carro.FirstOrDefault();
         }
+
+        public async Task AdicionarCarro(Carro novoCarro)
+        {
+            var sql = $"INSERT INTO Carro (Nome, Versao, ImagemUrl) VALUES ('{novoCarro.Nome}', '{novoCarro.Versao}', '{novoCarro.ImagemUrl}')";
+
+            await DbConnection.ExecuteAsync(sql);
+        }
+
+        public async Task AtualizarCarro(Carro carroAtualizado)
+        {
+            var sql = $"UPDATE Carro SET Nome = '{carroAtualizado.Nome}', Versao = '{carroAtualizado.Versao}', ImagemUrl = '{carroAtualizado.ImagemUrl}' WHERE Id = {carroAtualizado.Id}";
+
+            await DbConnection.ExecuteAsync(sql);
+        }
+
+        public async Task DeleteCarro(int id)
+        {
+            var sql = $"DELETE Carro WHERE Id = {id}";
+
+            await DbConnection.ExecuteAsync(sql);
+        }
     }
 }

@@ -6,5 +6,8 @@ namespace CrudCarsTokens.Repositories.Interfaces
     {
         Task<IEnumerable<Carro>> ListarCarros();
         Task<Carro> ObterCarroPorId(int carroId);
+        Task AdicionarCarro(Carro novoCarro);
+        Task AtualizarCarro(Carro carroAtualizado);
+        Task DeleteCarro(int id);
     }
 }

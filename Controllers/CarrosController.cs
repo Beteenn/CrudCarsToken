@@ -1,4 +1,5 @@
-﻿using CrudCarsTokens.Services.Interfaces;
+﻿using CrudCarsTokens.Dtos;
+using CrudCarsTokens.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrudCarsTokens.Controllers
@@ -35,20 +36,26 @@ namespace CrudCarsTokens.Controllers
         }
 
         [HttpPost()]
-        public IActionResult AdicionarCarro()
+        public async Task<IActionResult> AdicionarCarro(CarroDto carroDto)
         {
+            await _carrosService.AdicionarCarro(carroDto);
+
             return Ok("Carro adicionado");
         }
 
         [HttpPut()]
-        public IActionResult AtualizarCarro()
+        public async Task<IActionResult> AtualizarCarro(CarroDto carroDto)
         {
+            await _carrosService.AtualizarCarro(carroDto);
+
             return Ok("Carro atualizado");
         }
 
-        [HttpDelete()]
-        public IActionResult DeletarCarro()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletarCarro(int id)
         {
+            await _carrosService.DeleteCarro(id);
+
             return Ok("Carro Deletado");
         }
     }
